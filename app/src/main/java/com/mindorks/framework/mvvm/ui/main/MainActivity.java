@@ -21,7 +21,6 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
@@ -40,6 +39,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.mindorks.framework.mvvm.ActivityExtKt;
 import com.mindorks.framework.mvvm.BR;
 import com.mindorks.framework.mvvm.BuildConfig;
 import com.mindorks.framework.mvvm.R;
@@ -51,13 +51,10 @@ import com.mindorks.framework.mvvm.ui.base.BaseActivity;
 import com.mindorks.framework.mvvm.ui.feed.FeedActivity;
 import com.mindorks.framework.mvvm.ui.login.LoginActivity;
 import com.mindorks.framework.mvvm.ui.main.rating.RateUsDialog;
-import com.mindorks.framework.mvvm.utils.ScreenUtils;
-import com.mindorks.framework.mvvm.utils.ViewAnimationUtils;
 import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.mindorks.placeholderview.listeners.ItemRemovedListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -73,15 +70,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
-
+    ActivityMainBinding mActivityMainBinding;
     private MainViewModel mMainViewModel;
-
     private DrawerLayout mDrawer;
     private Toolbar mToolbar;
     private NavigationView mNavigationView;
     private SwipePlaceHolderView mCardsContainerView;
-
-    ActivityMainBinding mActivityMainBinding;
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -200,9 +194,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void setupCardContainerView() {
-
-        int screenWidth = ScreenUtils.getScreenWidth(this);
-        int screenHeight = ScreenUtils.getScreenHeight(this);
+        int screenWidth = ActivityExtKt.getScreenWidth(this);
+        int screenHeight = ActivityExtKt.getScreenHeight(this);
 
         mCardsContainerView.getBuilder()
                 .setDisplayViewCount(3)

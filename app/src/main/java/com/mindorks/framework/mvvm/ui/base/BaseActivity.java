@@ -30,8 +30,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.mindorks.framework.mvvm.ActivityExtKt;
 import com.mindorks.framework.mvvm.ui.login.LoginActivity;
-import com.mindorks.framework.mvvm.utils.CommonUtils;
 import com.mindorks.framework.mvvm.utils.NetworkUtils;
 
 import dagger.android.AndroidInjection;
@@ -113,7 +113,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     public void showLoading() {
         hideLoading();
-        mProgressDialog = CommonUtils.showLoadingDialog(this);
+        mProgressDialog = ActivityExtKt.showLoadingDialog(this);
     }
 
     public void hideLoading() {

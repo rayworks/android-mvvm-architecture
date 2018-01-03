@@ -22,6 +22,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.mindorks.framework.mvvm.ViewExtKt;
 import com.mindorks.framework.mvvm.data.model.api.BlogResponse;
 import com.mindorks.framework.mvvm.data.model.others.QuestionCardData;
 import com.mindorks.framework.mvvm.ui.feed.blogs.BlogAdapter;
@@ -83,7 +84,7 @@ public final class BindingUtils {
                         mCardsContainerView.addView(new QuestionCard(question));
                     }
                 }
-                ViewAnimationUtils.scaleAnimateView(mCardsContainerView);
+                ViewExtKt.scaleAnimateView(mCardsContainerView);
             }
         }
     }
